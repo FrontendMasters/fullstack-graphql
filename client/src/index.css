@@ -1,0 +1,125 @@
+@import 'flexboxgrid';
+
+:root {
+  --bgColor: #EFEFEF;
+  --primaryColor: #3454D1;
+  --secondaryColor: #34D1BF;
+  --textColor: #070707;
+  --errorColor: #D1345B;
+  --lightTextColor: #fff;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', 'Segoe UI', Roboto, -apple-system, system-ui, BlinkMacSystemFont, Arial, sans-serif;
+  background: var(--bgColor);
+}
+
+body * {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: calc(0.6em + 1vw);
+  color: var(--textColor);
+}
+
+.page {
+  padding: 3em 6em;
+}
+
+.row {
+  margin: 0px;
+}
+
+header {
+  height: 65px;
+  width: 100vw;
+  background: var(--primaryColor);
+  padding: 10px 30px;
+}
+
+.link, a {
+  text-decoration: none;
+  color: var(--secondaryColor);
+}
+
+.full-page-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(255,255,255, .8);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.full-page {
+  height: 100vh;
+  width: 100vw;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.form-box {
+  background: white;
+  padding: 1.5em;
+  border-radius: 3px;
+}
+
+.box {
+  background: white;
+  padding: 1.5em;
+  border-radius: 4px;
+  border: 1px solid lightgrey;
+}
+
+.input {
+  padding: .5em;
+  outline: none;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+  height: 1.6rem;
+  font-size: 1rem;
+  width: 100%;
+  margin: 1em 0;
+}
+
+.input:focus {
+  outline: none;
+}
+
+button,.button {
+  outline: none;
+  border: none;
+  color: var(--lightTextColor);
+  font-size: .8rem;
+  text-transform: uppercase;
+  padding: .5rem;
+  background: var(--primaryColor);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+button.error, .button.error {
+  background: var(--errorColor);
+}
+
+.col {
+  padding-top: .5rem;
+  padding-bottom: .5rem
+}
+
+figure {
+  width: 200px;
+  height: 200px;
+}
+
+figure img {
+  width: 100%;
+}
