@@ -43,17 +43,31 @@ export default function Pets () {
 
       cache.writeQuery({
         query: GET_PETS,
-        data: { pets: pets.concat([addPet]) }
+        data: { pets: [addPet, ...pets] }
       })
     }
   })
 
-  if (pets.loading || newPet.loading) return <Loader />
+  if (pets.loading) return <Loader />
   if (pets.error || newPet.error) return <p>ERROR</p>
 
   const onSubmit = input => {
     setModal(false)
-    createPet({variables: {input}})
+    createPet({
+      variables: {input},
+    
+      optimisticResponse: {
+        __typename: 'Mutation',
+        addPet: {
+          __typename: 'Pet',
+          id: Math.round(Math.random() * -1000000) + '',
+          type: input.type,
+          name: input.name,
+          img: 'https://via.placeholder.com/300',
+          vacinated: true
+        }
+      }
+    })
   }
 
   const petsList = pets.data.pets.map(pet => (
