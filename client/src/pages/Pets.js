@@ -5,26 +5,32 @@ import NewPet from '../components/NewPet'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import Loader from '../components/Loader'
 
+const PET_DETAILS = gql`
+  fragment PetDetails on Pet {
+    id
+    type
+    name
+    img
+    vacinated @client
+  }
+`
+
 const GET_PETS = gql`
   query petsList($input: PetsInput) {
     pets(input: $input) {
-      id
-      type
-      name
-      img
+      ...PetDetails
     }
   }
+  ${PET_DETAILS}
 `
 
 const CREATE_PET = gql`
   mutation CreatePet($input: NewPetInput!) {
     addPet(input: $input) {
-      id
-      name
-      type
-      img
+      ...PetDetails
     }
   }
+  ${PET_DETAILS}
 `;
 
 export default function Pets () {
@@ -46,8 +52,8 @@ export default function Pets () {
   if (pets.error || newPet.error) return <p>ERROR</p>
 
   const onSubmit = input => {
-    createPet({variables: {input}})
     setModal(false)
+    createPet({variables: {input}})
   }
 
   const petsList = pets.data.pets.map(pet => (
