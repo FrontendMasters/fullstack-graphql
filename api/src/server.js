@@ -13,7 +13,7 @@ const server = new ApolloServer({
     }
   }
 })
-
+console.log(db.getState());
 server.listen(4000).then(({ url }) => {
   console.log(`🚀 Server ready at ${url}`);
 })

@@ -1,7 +1,9 @@
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
 
-const adapter = new FileSync('db.json')
+const adapter = new FileSync('api/src/db/db.json')
+console.log(adapter);
+
 const db = low(adapter)
 
 const createPetModel = require('./pet')

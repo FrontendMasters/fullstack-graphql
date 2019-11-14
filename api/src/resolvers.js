@@ -5,7 +5,7 @@
 
 module.exports = {
   Query: {
-    me() {
+    me(_, __, ctx) {
       return {
         id: 'a123-asd-423',
         username: 'testUser'
@@ -14,8 +14,8 @@ module.exports = {
     pets(_, {input}, ctx) {
       return ctx.models.Pet.findMany(input);
     },
-    pet(_, {id}, ctx) {
-      return ctx.models.Pet.findOne(id)
+    pet(_, {input}, ctx) {
+      return ctx.models.Pet.findOne(input);
     }
   },
   // Mutation: {
