@@ -1,1 +1,14 @@
-{}
+{
+  "user": {
+    "id": "asdfkdk",
+    "username": "nick"
+  },
+  "pets": [
+    {
+      "id": "diedh456dk",
+      "type": "DOG",
+      "name": "bill",
+      "createdAt": "12s"
+    }
+  ]
+}
