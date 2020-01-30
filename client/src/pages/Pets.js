@@ -5,26 +5,36 @@ import PetsList from "../components/PetsList";
 import NewPetModal from "../components/NewPetModal";
 import Loader from "../components/Loader";
 
+const PETS_FIELD = gql`
+  fragment PetsFields on Pet {
+    vax @client
+    id
+    name
+    type
+    img
+    owner {
+      id
+      age @client
+    }
+  }
+`;
+
 const GET_ALL_PETS = gql`
   query getAllPets {
     pets {
-      id
-      name
-      type
-      img
+      ...PetsFields
     }
   }
+  ${PETS_FIELD}
 `;
 
 const ADD_PET = gql`
   mutation createPet($newPetInput: NewPetInput!) {
     addPet(input: $newPetInput) {
-      id
-      name
-      type
-      img
+      ...PetsFields
     }
   }
+  ${PETS_FIELD}
 `;
 
 export default function Pets() {
@@ -59,7 +69,13 @@ export default function Pets() {
           id: "asdf",
           name: "optomistic",
           type: "DOG",
-          img: "NOTHIN"
+          img: "NOTHIN",
+          vax: false,
+          owner: {
+            age: 22,
+            __typename: "ddd8",
+            id: 555
+          }
         }
       }
     });
@@ -71,12 +87,17 @@ export default function Pets() {
   }
 
   if (error || newPetData.error) {
+    console.log("ERROR: ", error);
+    // console.log("new pet data ERROR: ", newPetData.error);
+
     return <p>There is an error</p>;
   }
 
   if (modal) {
     return <NewPetModal onSubmit={onSubmit} onCancel={() => setModal(false)} />;
   }
+
+  console.log(data);
 
   return (
     <div className='page pets-page'>
