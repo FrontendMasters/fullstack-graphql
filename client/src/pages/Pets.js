@@ -8,8 +8,8 @@ import Loader from "../components/Loader";
 const GET_ALL_PETS = gql`
   query getAllPets {
     pets {
-      name
       id
+      name
       type
       img
     }
@@ -29,16 +29,44 @@ const ADD_PET = gql`
 
 export default function Pets() {
   const [modal, setModal] = useState(false);
-  const { data, loading, error, refetch } = useQuery(GET_ALL_PETS);
-  const [addPet, { newPetData = data }] = useMutation(ADD_PET, {});
+  const { data, loading, error } = useQuery(GET_ALL_PETS);
+  const [addPet, { newPetData = data }] = useMutation(ADD_PET, {
+    /* updates the local cache when new pet is added */
+    update(
+      cache,
+      {
+        data: { addPet }
+      }
+    ) {
+      const { pets } = cache.readQuery({ query: GET_ALL_PETS });
+      cache.writeQuery({
+        // updating athe all pets query... little weird
+        query: GET_ALL_PETS,
+        data: { pets: [addPet].concat(pets) }
+      });
+    }
+  });
 
   const onSubmit = input => {
-    addPet({ variables: { newPetInput: input } });
+    addPet({
+      variables: { newPetInput: input },
+      /* optimistic can be added here or written into the useMutation 
+      hook here we have access to variables that the user acually enterd */
+      optimisticResponse: {
+        __typename: "Pet",
+        addPet: {
+          __typename: "asdf",
+          id: "asdf",
+          name: "optomistic",
+          type: "DOG",
+          img: "NOTHIN"
+        }
+      }
+    });
     setModal(false);
-    refetch();
   };
 
-  if (loading || newPetData.loading) {
+  if (loading) {
     return <Loader />;
   }
 
