@@ -26,27 +26,24 @@ const ADD_PET = gql`
     }
   }
 `;
-<<<<<<< HEAD
-=======
 
 export default function Pets() {
   const [modal, setModal] = useState(false);
-  const { data, loading, error } = useQuery(GET_ALL_PETS);
-  const [addPet, newData = { data }] = useMutation(ADD_PET, {});
->>>>>>> fbce6dc... feat(site): read and write to apollo db
+  const { data, loading, error, refetch } = useQuery(GET_ALL_PETS);
+  const [addPet, { newPetData = data }] = useMutation(ADD_PET, {});
 
-export default function Pets() {
-  const [modal, setModal] = useState(false);
-  const { data, loading, error } = useQuery(GET_ALL_PETS);
-  const [addPet, newData = { data }] = useMutation(ADD_PET, {});
-  console.log(newData);
   const onSubmit = input => {
     addPet({ variables: { newPetInput: input } });
     setModal(false);
+    refetch();
   };
 
-  if (loading || error) {
+  if (loading || newPetData.loading) {
     return <Loader />;
+  }
+
+  if (error || newPetData.error) {
+    return <p>There is an error</p>;
   }
 
   if (modal) {
