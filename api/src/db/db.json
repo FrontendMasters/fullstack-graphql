@@ -8,19 +8,22 @@
       "id": "1",
       "createdAt": 32323232,
       "name": "goshi",
-      "type": "dog"
+      "type": "dog",
+      "user": "jBWMVGjm50l6LGwepDoty"
     },
     {
       "id": "2",
       "createdAt": 323232323,
       "name": "orion",
-      "type": "cat"
+      "type": "cat",
+      "user": "jBWMVGjm50l6LGwepDoty"
     },
     {
       "id": "GkfetiCWnHGx6PJALTSTK",
       "createdAt": 1588446487434,
       "name": "Mia",
-      "type": "cat"
+      "type": "cat",
+      "user": "jBWMVGjm50l6LGwepDoty"
     }
   ]
 }
