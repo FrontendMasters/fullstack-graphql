@@ -1,30 +1,27 @@
-const nanoid = require('nanoid')
+const nanoid = require("nanoid");
 
-const createPetModel = db => {
+const createPetModel = (db) => {
   return {
     findMany(filter) {
-      return db.get('pet')
+      return db
+        .get("pet")
         .filter(filter)
-        .orderBy(['createdAt'], ['desc'])
-        .value()
+        .orderBy(["createdAt"], ["desc"])
+        .value();
     },
 
     findOne(filter) {
-      return db.get('pet')
-        .find(filter)
-        .value()
+      return db.get("pet").find(filter).value();
     },
 
     create(pet) {
-      const newPet = {id: nanoid(), createdAt: Date.now(), ...pet}
-      
-      db.get('pet')
-        .push(newPet)
-        .write()
+      const newPet = { id: nanoid(), createdAt: Date.now(), ...pet };
 
-      return newPet
-    }
-  }
-}
+      db.get("pet").push(newPet).write();
 
-module.exports = createPetModel
+      return newPet;
+    },
+  };
+};
+
+module.exports = createPetModel;
