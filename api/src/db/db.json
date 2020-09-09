@@ -56,6 +56,13 @@
       "name": "Doggo",
       "type": "DOG",
       "user": "jBWMVGjm50l6LGwepDoty"
+    },
+    {
+      "id": "VQhpm6fXt1wPf7APKEm6z",
+      "createdAt": 1599653942515,
+      "name": "Kitty",
+      "type": "CAT",
+      "user": "jBWMVGjm50l6LGwepDoty"
     }
   ]
 }
