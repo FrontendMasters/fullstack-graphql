@@ -3,5 +3,59 @@
     "id": "jBWMVGjm50l6LGwepDoty",
     "username": "frontendmaster"
   },
-  "pet": []
+  "pet": [
+    {
+      "id": "81342341234",
+      "type": "DOG",
+      "name": "Moose",
+      "createdAt": "12345667"
+    },
+    {
+      "id": "81342132341234",
+      "type": "CAT",
+      "name": "Meow",
+      "createdAt": "12345667"
+    },
+    {
+      "id": "813423qwe41234",
+      "type": "DOG",
+      "name": "Dan",
+      "createdAt": "12345667"
+    },
+    {
+      "id": "FGQjtlrnYbED6SspBbKBx",
+      "createdAt": 1599636028130,
+      "name": "Batman",
+      "type": "DOG",
+      "user": "jBWMVGjm50l6LGwepDoty"
+    },
+    {
+      "id": "s4UD-0vNFQXlyFmAccBhU",
+      "createdAt": 1599636945464,
+      "name": "Molly",
+      "type": "CAT",
+      "user": "jBWMVGjm50l6LGwepDoty"
+    },
+    {
+      "id": "eqyIN5n6CvhlGC18JogAE",
+      "createdAt": 1599651251263,
+      "name": "DADA",
+      "type": "DOG",
+      "user": "jBWMVGjm50l6LGwepDoty"
+    },
+    {
+      "id": "rzEOGqSAqJNePBZm38YzE",
+      "createdAt": 1599651850740,
+      "name": "Bored",
+      "type": "CAT",
+      "user": "jBWMVGjm50l6LGwepDoty"
+    },
+    {
+      "id": "SVIfbLs2Kn7Z9s39r5UR1",
+      "createdAt": 1599652735781,
+      "name": "Doggo",
+      "type": "DOG",
+      "user": "jBWMVGjm50l6LGwepDoty"
+    }
+  ]
 }
