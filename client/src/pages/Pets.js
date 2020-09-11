@@ -5,26 +5,36 @@ import PetsList from "../components/PetsList";
 import NewPetModal from "../components/NewPetModal";
 import Loader from "../components/Loader";
 
+const PET_FIELDS = gql`
+  fragment PetsFields on Pet {
+    id
+    name
+    type
+    img
+    vaccinated @client
+    owner {
+      id
+      age @client
+    }
+  }
+`;
+
 const ALL_PETS = gql`
   query AllPets {
     pets {
-      id
-      name
-      type
-      img
+      ...PetsFields
     }
   }
+  ${PET_FIELDS}
 `;
 
 const NEW_PET = gql`
   mutation CreateANewPet($newPet: NewPetInput!) {
     addPet(input: $newPet) {
-      id
-      name
-      type
-      img
+      ...PetsFields
     }
   }
+  ${PET_FIELDS}
 `;
 
 export default function Pets() {
@@ -71,6 +81,7 @@ export default function Pets() {
 
   return (
     <div className="page pets-page">
+      {console.log(data.pets[0])}
       <section>
         <div className="row betwee-xs middle-xs">
           <div className="col-xs-10">
