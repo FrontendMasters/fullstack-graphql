@@ -23,13 +23,16 @@ const CREATE_PET = gql`
       name
       type
       img
+      __typename
     }
   }
 `;
 
 export default function Pets() {
   const [modal, setModal] = useState(false);
+
   const { data, loading, error } = useQuery(ALL_PETS);
+
   const [createPet, newPet] = useMutation(CREATE_PET, {
     update(cache, { data: { addPet } }) {
       const { pets } = cache.readQuery({ query: ALL_PETS });
@@ -40,7 +43,7 @@ export default function Pets() {
     },
   });
 
-  if (loading || newPet.loading) {
+  if (loading) {
     return <Loader />;
   }
 
@@ -52,6 +55,16 @@ export default function Pets() {
     setModal(false);
     createPet({
       variables: { newPet: input },
+      optimisticResponse: {
+        __typename: "Mutation",
+        addPet: {
+          __typename: "Pet",
+          id: Math.floor(Math.random() * 1000),
+          name: input.name,
+          type: input.type,
+          img: "https://via.placeholder.com/300",
+        },
+      },
     });
   };
 

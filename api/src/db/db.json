@@ -37,6 +37,20 @@
       "name": "Moose",
       "type": "DOG",
       "user": "jBWMVGjm50l6LGwepDoty"
+    },
+    {
+      "id": "oTmz7gFApnWTJf-JM9wTD",
+      "createdAt": 1600008838728,
+      "name": "Reggie",
+      "type": "CAT",
+      "user": "jBWMVGjm50l6LGwepDoty"
+    },
+    {
+      "id": "ld462Z5EAjHwP20B9OiR7",
+      "createdAt": 1600009345258,
+      "name": "Carol",
+      "type": "CAT",
+      "user": "jBWMVGjm50l6LGwepDoty"
     }
   ]
 }
