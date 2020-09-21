@@ -7,6 +7,20 @@ import { setContext } from "apollo-link-context";
 /**
  * Create a new apollo client and export as default
  */
+const typeDefs = gql`
+  extend type User {
+    age: Int
+  }
+`;
+
+const resolvers = {
+  User: {
+    age() {
+      return 35;
+    },
+  },
+};
+
 const http = new HttpLink({ uri: "http://localhost:4000/" });
 
 const cache = new InMemoryCache();
@@ -23,5 +37,7 @@ const link = ApolloLink.from([delay, http]);
 const client = new ApolloClient({
   link,
   cache,
+  resolvers,
+  typeDefs,
 });
 export default client;
