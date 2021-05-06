@@ -5,26 +5,35 @@ import PetsList from "../components/PetsList";
 import NewPetModal from "../components/NewPetModal";
 import Loader from "../components/Loader";
 
+const PETS_FRAGMENT = gql`
+  fragment PetsFragment on Pet  {
+    id
+    name
+    type
+    img
+    vaccinated @client
+      owner {
+        id
+        age @client
+      }
+  }
+`
 const PETS_LIST = gql`
   query petsList {
     pets {
-      id
-      name
-      type
-      img
+     ...PetsFragment
     }
   }
+  ${PETS_FRAGMENT}
 `;
 
 const ADD_PET = gql`
   mutation ADD_PET($newPet: NewPetInput!) {
     addPet(input: $newPet) {
-      id
-      name
-      type
-      img
+      ...PetsFragment
     }
   }
+  ${PETS_FRAGMENT}
 `;
 
 export default function Pets() {
@@ -46,12 +55,17 @@ export default function Pets() {
         type: "catordog",
         img: "image",
         __typename: "Pet",
+      
       },
     },
   });
 
+
   if (loading) return <Loader />;
   if (error || mutationState.error) return `Error! ${error.message}`;
+
+    console.log(data.pets[0]);
+
 
   const onSubmit = (input) => {
     setModal(false);
@@ -93,21 +107,4 @@ export default function Pets() {
   );
 }
 
-// {
-//   "id": "dasd4asd5",
-//   "type": "Dog",
-//   "name": "doggy",
-//   "owner": "man"
-// },
-// {
-//   "id": "dasd4asd5",
-//   "type": "Cat",
-//   "name": "BB",
-//   "owner": "woman"
-// },
-// {
-//   "id": "dasd4asd5",
-//   "type": "Snake",
-//   "name": "Dobby",
-//   "owner": "Wizard"
-// }
+

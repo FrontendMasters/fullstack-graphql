@@ -3,8 +3,6 @@ import PetBox from './PetBox'
 
 export default function PetsList({pets}) {
 
-console.log(pets);
-
   return (
     <div className="row">
       {pets.map(pet => (
