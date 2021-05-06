@@ -8,7 +8,7 @@ import gql from "graphql-tag";
  */
 
 // link is a network connection beteen Apollo server and client
-const link = new HttpLink({ uri: "https://rickandmortyapi.com/graphql" });
+const link = new HttpLink({ uri: "http://localhost:4000/" });
 // apollo gives us a cache and we call it here
 const cache = new InMemoryCache();
 
@@ -18,16 +18,16 @@ const client = new ApolloClient({
   cache,
 });
 
-const query = gql`
-  {
-    characters {
-      results {
-        name
-      }
-    }
-  }
-`;
+// const query = gql`
+//   {
+//     characters {
+//       results {
+//         name
+//       }
+//     }
+//   }
+// `;
 
-client.query({ query }).then((result) => console.log(result));
+// client.query({ query }).then((result) => console.log(result));
 
 export default client;

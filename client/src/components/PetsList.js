@@ -2,6 +2,7 @@ import React from 'react'
 import PetBox from './PetBox'
 
 export default function PetsList({pets}) {
+
   return (
     <div className="row">
       {pets.map(pet => (
