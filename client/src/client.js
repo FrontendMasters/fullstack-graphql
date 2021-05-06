@@ -11,3 +11,11 @@ import gql from "graphql-tag";
 const link = new HttpLink({ uri: "http://localhost:4000/" });
 // apollo gives us a cache and we call it here
 const cache = new InMemoryCache()
+
+// initialize apollo client
+const client = new ApolloClient({
+    link,
+    cache
+})
+
+export default client
