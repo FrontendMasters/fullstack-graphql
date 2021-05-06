@@ -30,10 +30,27 @@ const ADD_PET = gql`
 export default function Pets() {
   const [modal, setModal] = useState(false);
   const { data, loading, error } = useQuery(PETS_LIST);
-  const [createPet, mutationState] = useMutation(ADD_PET);
+  const [createPet, mutationState] = useMutation(ADD_PET, {
+    update(cache, { data: { addPet } }) {
+      const { pets } = cache.readQuery({ query: PETS_LIST });
+      cache.writeQuery({
+        query: PETS_LIST,
+        data: { pets: [addPet, ...pets] },
+      });
+    },
+    optimisticResponse: {
+      __typename: "Mutation",
+      addPet: {
+        id: "1234",
+        name: "animalName",
+        type: "catordog",
+        img: "image",
+        __typename: "Pet",
+      },
+    },
+  });
 
-
-  if (loading || mutationState.loading) return <Loader />;
+  if (loading) return <Loader />;
   if (error || mutationState.error) return `Error! ${error.message}`;
 
   const onSubmit = (input) => {
@@ -44,6 +61,15 @@ export default function Pets() {
   if (modal) {
     return <NewPetModal onSubmit={onSubmit} onCancel={() => setModal(false)} />;
   }
+
+  //   addPet:
+  // id: "2QgKa2OJdoT2i7HdCcq1d"
+  // img: "https://placedog.net/300/300"
+  // name: "asdasasdadadsdasdsad"
+  // type: "DOG"
+  // __typename: "Pet"
+
+  console.log(mutationState.data);
 
   return (
     data && (
