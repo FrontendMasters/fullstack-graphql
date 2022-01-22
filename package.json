@@ -14,7 +14,7 @@
     "graphql-tag": "^2.10.1",
     "json5": "^2.1.0",
     "lowdb": "^1.0.0",
-    "nanoid": "^2.1.1",
+    "nanoid": "^3.1.31",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
     "react-router": "^5.1.2",
