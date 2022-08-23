@@ -5,19 +5,36 @@
 
 module.exports = {
   Query: {
-    
+   pets(_, {input}, context) {
+    const result = context.models.Pet.findMany(input)
+    return result
+   },
+   
+   pet(_, {input}, context) {
+    const result = context.models.Pet.findOne(input)
+    return result
+   },
+
+   user(_, __, context) {
+    return context.user
+   }
   },
   Mutation: {
-    
+    createPet(_, {input}, context) {
+      const resultPet = context.models.Pet.create(input)
+      return resultPet
+    }
   },
   Pet: {
-    img(pet) {
-      return pet.type === 'DOG'
-        ? 'https://placedog.net/300/300'
-        : 'http://placekitten.com/300/300'
+    owner(pet, __, context) {
+      return context.user
     }
   },
   User: {
-    
+    pets(user, __, context) {
+     const result = context.models.Pet.findMany()
+     return result
+
+    }
   }
 }
