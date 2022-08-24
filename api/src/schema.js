@@ -15,8 +15,7 @@ const typeDefs = gql`
     createdAt: String!
     name: String!
     type: String!
-    img: String
-    owner: User!
+    user: User
   }
 
   input PetInput {
