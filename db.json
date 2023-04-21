@@ -1,1 +1,20 @@
-{}
+{
+    "user": {
+        "id":"bckdfuwyfwfwhgkbvlvifofh",
+        "username": "frontendmaster"
+      },
+      "pet":[
+      {
+        "id": "1",
+        "createdAt": "453548358",
+        "name": " moose",
+        "type": "DOG"
+      },
+      {
+       "id": "2",
+        "createdAt": "5725697358",
+        "name": " dire",
+        "type": "CATS"
+      }
+      ]
+}
