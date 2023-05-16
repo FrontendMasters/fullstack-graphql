@@ -48,6 +48,6 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "jest": "^24.9.0",
-    "parcel": "^1.12.3"
+    "parcel": "1.12.3"
   }
 }
