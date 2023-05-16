@@ -5,7 +5,7 @@ This course comes with some [slides](https://docs.google.com/presentation/d/1IrG
 
 
 ## What you'll need
-* Node version >= 6
+* Node version 8.17.0
 
 ## Solutions
 The solution branch has the completed course fo reference. There is no one way to finish this course.
